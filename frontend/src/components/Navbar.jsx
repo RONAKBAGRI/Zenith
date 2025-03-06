@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { assets } from "../assets/assets";
+import { ShopContext } from "../context/shopContext";
 
 const Navbar = () => {
   const [visible,setVisible]=useState(false);
+  const {setShowSearch,getCartCount}=useContext(ShopContext);
   return (
     <div className="flex items-center justify-between py-3 bg-black px-5">
       <div className="flex items-center">
@@ -14,24 +16,24 @@ const Navbar = () => {
       </div>
       <ul className="hidden sm:flex gap-5 text-sm text-white">
         <NavLink to="/" className="flex flex-col items-center gap-1">
-          <p>Home</p>
+          <p className='text-[1.1rem]'>Home</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-white hidden" />
         </NavLink>
         <NavLink to="/collection" className="flex flex-col items-center gap-1">
-          <p>Collections</p>
+          <p className='text-[1.1rem]'>Collections</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-white hidden" />
         </NavLink>
         <NavLink to="/about" className="flex flex-col items-center gap-1">
-          <p>About</p>
+          <p className='text-[1.1rem]'>About</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-white hidden" />
         </NavLink>
         <NavLink to="/contact" className="flex flex-col items-center gap-1">
-          <p>Contact</p>
+          <p className='text-[1.1rem]'>Contact</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-white hidden" />
         </NavLink>
       </ul>
       <div className="flex items-center gap-6">
-        <img src={assets.search_icon} className="w-4 cursor-pointer filter invert" alt="search_icon"/>
+        <img onClick={()=>setShowSearch(true)} src={assets.search_icon} className="w-4 cursor-pointer filter invert" alt="search_icon"/>
         <div className="group relative">
           <img src={assets.profile_icon} alt="profile_icon" className="w-4 cursor-pointer filter invert"/>
           <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-2">
@@ -44,7 +46,7 @@ const Navbar = () => {
         </div>
         <Link to="/cart" className="relative">
           <img src={assets.cart_icon} alt="cart_icon" className="w-4 min-w-4 cursor-pointer filter invert"/>
-          <p className='absolute right-[-5px] bottom-[-5px] w-3 text-center leading-3 bg-white text-black aspect-square rounded-full text-[8px]'>10</p>
+          <p className='absolute right-[-5px] bottom-[-5px] w-3 text-center leading-3 bg-white text-black aspect-square rounded-full text-[8px] font-bold'>{getCartCount()}</p>
         </Link>
         <img onClick={()=>setVisible(true)} src={assets.menu_icon} alt="menu_icon" className='w-5 cursor-pointer sm:hidden filter invert' />
       </div>
