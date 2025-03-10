@@ -141,7 +141,11 @@ const PlaceOrders = () => {
             </div>
           </div> 
           <div className="w-full text-end mt-8">
-            <button onClick={()=>navigate('/orders')} className="bg-black text-white px-16 py-3  text-sm">Place Order</button>
+          <button 
+            onClick={() => navigate('/orders')} 
+            className={`px-16 py-3 text-sm ${email && !error && selectedCountry && selectedState && selectedCity && phone ? 'bg-black text-white' : 'bg-gray-400 text-gray-700 cursor-not-allowed'}`} disabled={!email || error || !selectedCountry || !selectedState || !selectedCity ||!phone}>
+            Place Order
+          </button>
           </div>
         </div>
       </div>

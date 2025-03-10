@@ -13,6 +13,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import SearchBar from './components/SearchBar'
 import { ToastContainer, toast } from 'react-toastify';
+import Jobs from './components/Jobs'
 
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
         <Route path='/orders' element={<Orders/>}/>
         <Route path='/place-order' element={<PlaceOrders/>}/>
         <Route path='/collection' element={<Collection/>}/>
+        <Route path='/jobs' element={<Jobs/>}/>
       </Routes>
       <Footer/>
     </div>
